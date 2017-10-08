@@ -65,3 +65,15 @@ pictureArea (Translate x y pic) = pictureArea pic
 
 testPictureArea : Double
 testPictureArea = pictureArea testPicture
+
+-- Generic data types
+
+data Biggest = NoTriangle
+             | Size Double
+
+data DivResult = DivByZero
+               | Result Double
+
+safeDivide : Double -> Double -> DivResult
+safeDivide x 0.0 = DivByZero
+safeDivide x y = Result (x / y)
