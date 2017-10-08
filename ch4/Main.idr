@@ -77,3 +77,10 @@ data DivResult = DivByZero
 safeDivide : Double -> Double -> DivResult
 safeDivide x 0.0 = DivByZero
 safeDivide x y = Result (x / y)
+
+data Maybe' valtype = Nothing'
+                    | Just' valtype
+
+safeDivide' : Double -> Double -> Maybe' Double
+safeDivide' x 0.0 = Nothing'
+safeDivide' x y = Just' (x / y)
