@@ -81,3 +81,12 @@ countdowns = do putStr "Enter starting number: "
                 yn <- getLine
                 if yn == "y" then countdowns
                              else pure ()
+
+guess : (target : Nat) -> IO ()
+guess target = do putStr "Enter what you guessed: "
+                  Just input <- readNumber
+                       | Nothing => do putStrLn "Invalid input"
+                                       guess target
+                  if input == target
+                  then putStrLn "Correct! You won!"
+                  else guess target
