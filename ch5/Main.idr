@@ -1,5 +1,7 @@
 module Main
 
+import System
+
 main : IO ()
 main = do
      putStrLn "Enter"
@@ -62,3 +64,20 @@ readNumbers =
             do Just num1_ok <- readNumber | Nothing => pure Nothing
                Just num2_ok <- readNumber | Nothing => pure Nothing
                pure (Just (num1_ok, num2_ok))
+
+countdown : (secs : Nat) -> IO ()
+countdown Z = putStrLn "Lift off"
+countdown (S secs) = do putStrLn (show (S secs))
+                        usleep 100000
+                        countdown secs
+
+countdowns : IO ()
+countdowns = do putStr "Enter starting number: "
+                Just startNum <- readNumber
+                     | Nothing => do putStrLn "Invalid input"
+                                     countdowns
+                countdown startNum
+                putStr "Another (y/n)? "
+                yn <- getLine
+                if yn == "y" then countdowns
+                             else pure ()
