@@ -20,8 +20,15 @@ printLength = do putStr "Input String: "
                  putStrLn (show len)
 
 printLonger : IO ()
-printLonger = do putStr "Input String 1: "
+printLonger = do putStr "First String: "
                  i1 <- getLine
-                 putStr "Input String 2: "
+                 putStr "Second String: "
                  i2 <- getLine
-                 putStrLn $ show $ length i2 + length i1
+                 let len1 = length i1
+                 let len2 = length i2
+                 let len = if len1 > len2
+                           then len1
+                           else len2
+                 putStrLn $ show len
+
+
