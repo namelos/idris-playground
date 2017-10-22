@@ -31,4 +31,15 @@ printLonger = do putStr "First String: "
                            else len2
                  putStrLn $ show len
 
+printLonger' : IO ()
+printLonger' = putStr "First String: " >>=
+               \_ => getLine >>=
+               \i1 => putStr "Second String: " >>=
+               \_ => getLine >>=
+               \i2 => putStrLn $ show $
+                      if length i1 > length i2
+                      then length i1
+                      else length i2
+
+
 
